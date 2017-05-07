@@ -1,0 +1,9 @@
+data_light <- read.csv("./exdata%2Fdata%2Fhousehold_power_consumption/household_power_consumption.txt", header = TRUE, sep =";")
+date1 <- as.Date("01/02/2007", "%d/%m/%Y")
+date2 <- as.Date("02/02/2007", "%d/%m/%Y")
+data_light$Date <- as.Date(data_light$Date, "%d/%m/%Y")
+data_resume <- data_light[data_light$Date >= date1 & data_light$Date <= date2, ]
+data_resume$Global_active_power <- as.numeric(as.character(data_resume$Global_active_power))
+hist(data_resume$Global_active_power, main= "Global active power", col="Red", xlab="Global active Power (kilowatts)")
+dev.copy(png, file ="plot1.png")
+dev.off()
